@@ -1,0 +1,30 @@
+calendar 
+
+
+
+Calendar implements BaseEntity => 
+user-id
+name
+description
+
+
+CalendarSpace implements BaseEntity => 
+calendar_id
+owner_id
+identity_id
+
+
+CalendarDetail implements BaseEntity =>
+calendar_id 
+calendar_days => object array 
+[{
+  month,
+  monthNumber,
+  dayNumber, 
+  allDay: boolean default false,
+  endDate: timestampz 
+  extendedProps: {tag: "Tag değeri şudur: Plan etiketleri yani, Business, etc vs gibi olan alanlar"},
+  startDate: timestampz
+  title
+  url
+}]

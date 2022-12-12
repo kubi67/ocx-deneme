@@ -1,0 +1,37 @@
+import { Leads } from 'src/models/leads/leads.entity';
+import { RolesDescriptionService } from 'src/units/roles/roles-description/roles-description.service';
+import { RolesService } from 'src/units/roles/roles/roles.service';
+import { RoleUserService } from 'src/units/user/role_user/role_user.service';
+import { UsersService } from 'src/units/user/user/user.service';
+import { Repository } from 'typeorm';
+import { LeadDTO } from './leads.dto';
+export declare class LeadsService {
+    private readonly repo;
+    private readonly userService;
+    private readonly roleService;
+    private readonly userRoleService;
+    private readonly roleDescriptionService;
+    constructor(repo: Repository<Leads>, userService: UsersService, roleService: RolesService, userRoleService: RoleUserService, roleDescriptionService: RolesDescriptionService);
+    getAll(): Promise<LeadDTO[]>;
+    getAllByStatus(status: boolean): Promise<LeadDTO[]>;
+    getByIdMany(id: string): Promise<LeadDTO[]>;
+    getDeliveredLeadsFull(): Promise<any>;
+    getDeliveredLeadsFullByOperator(operatorID: string): Promise<any>;
+    getDeliveredLeads(): Promise<any>;
+    getDeliveredLeadsByOperator(operatorID: string): Promise<any>;
+    getLeadsByOperator(operatorID: string): Promise<LeadDTO[]>;
+    getByDelivered(delivered: boolean): Promise<LeadDTO[]>;
+    getById(id: string): Promise<LeadDTO>;
+    create(dto: LeadDTO): Promise<LeadDTO>;
+    getByCampaign(campaign: string): Promise<LeadDTO[]>;
+    getByAssignedUser(assigned: string): Promise<LeadDTO[]>;
+    getByBroker(broker: string): Promise<LeadDTO[]>;
+    getByState(state: number): Promise<LeadDTO[]>;
+    createSimpleManuel(dto: LeadDTO, id: string): Promise<LeadDTO>;
+    createSimpleMany(dto: LeadDTO, id: string, count: number): Promise<LeadDTO>;
+    update(id: string, dto: LeadDTO): Promise<LeadDTO>;
+    getAllWithAll(): Promise<any>;
+    changeStatus(id: string): Promise<LeadDTO>;
+    softDelete(id: string): Promise<LeadDTO>;
+    hardDelete(id: string): Promise<any>;
+}
