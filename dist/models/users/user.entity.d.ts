@@ -4,6 +4,7 @@ export declare class User extends BaseEntity {
     username: string;
     password: string;
     status: number;
+    leadOperatorID: string;
     email: string;
     two_factor_secret: string;
     two_factor_recover_code: string;
@@ -16,6 +17,7 @@ export declare class User extends BaseEntity {
     isLast: boolean;
     firstname: string;
     lastname: string;
+    level: number;
     access_token: string;
     refresh_token: string;
     token_expire_at: Date;

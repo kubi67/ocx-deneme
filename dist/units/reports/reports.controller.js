@@ -21,7 +21,7 @@ let ReportsController = class ReportsController {
     constructor(reportService) {
         this.reportService = reportService;
     }
-    async getReports(startDate, endDate, brokerID, city, country) {
+    async getReports(startDate, endDate, brokerID) {
         if (!brokerID && !startDate && !endDate) {
             return {
                 MVPTrader: await this.reportService.getBestSalerOperatorWithoutDate(),
@@ -29,6 +29,7 @@ let ReportsController = class ReportsController {
                 Summaries: await this.reportService.getCountsWithoutDate(),
                 PNL: await this.reportService.getPNL(),
                 WidgetDatas: await this.reportService.getMockForTimeSeries(),
+                TraderCountByOperator: await this.reportService.getTraderCountByOperator(brokerID),
             };
         }
         if (brokerID && !startDate && !endDate) {
@@ -36,6 +37,7 @@ let ReportsController = class ReportsController {
                 MVPTrader: await this.reportService.getBestSalerOperatorWithoutDate(brokerID),
                 BestSalerOperator: await this.reportService.getBestSalerOperatorWithoutDate(brokerID),
                 Summaries: await this.reportService.getCountsWithoutDate(brokerID),
+                TraderCountByOperator: await this.reportService.getTraderCountByOperator(brokerID),
                 PNL: await this.reportService.getPNL(),
                 WidgetDatas: await this.reportService.getMockForTimeSeries(),
             };
@@ -44,9 +46,26 @@ let ReportsController = class ReportsController {
             MVPTrader: await this.reportService.getMostGainLeadTraders(),
             BestSalerOperator: await this.reportService.getBestSalerOperator(startDate, endDate, brokerID),
             Summaries: await this.reportService.getCounts(startDate, endDate, brokerID),
+            TraderCountByOperator: await this.reportService.getTraderCountByOperator(brokerID),
             PNL: await this.reportService.getPNL(),
             WidgetDatas: await this.reportService.getMockForTimeSeries(),
         };
+    }
+    async getBestSaler(brokerID, startDate, endDate) {
+        console.log(brokerID);
+        if (brokerID && startDate && endDate) {
+            return await this.reportService.getBestSalerOperator(startDate, endDate, brokerID);
+        }
+        if (brokerID && !startDate && !endDate) {
+            return await this.reportService.getBestSalerOperator(brokerID);
+        }
+        if (brokerID && startDate && !endDate) {
+            return await this.reportService.getBestSalerOperator(startDate, brokerID);
+        }
+        if (!brokerID && !startDate && !endDate) {
+            return await this.reportService.getBestSalerOperator();
+        }
+        return await this.reportService.getBestSalerOperator(brokerID);
     }
     async getLeadsByCampaign(brokerID) {
         return await this.reportService.getLeadByCampaign(brokerID);
@@ -105,12 +124,19 @@ __decorate([
     __param(0, (0, common_1.Query)('startDate')),
     __param(1, (0, common_1.Query)('endDate')),
     __param(2, (0, common_1.Query)('brokerID')),
-    __param(3, (0, common_1.Query)('city')),
-    __param(4, (0, common_1.Query)('country')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, Number, Number]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], ReportsController.prototype, "getReports", null);
+__decorate([
+    (0, common_1.Get)('/best-saler/:brokerID?/:startDate?/:endDate?'),
+    __param(0, (0, common_1.Query)('brokerID')),
+    __param(1, (0, common_1.Query)('startDate')),
+    __param(2, (0, common_1.Query)('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], ReportsController.prototype, "getBestSaler", null);
 __decorate([
     (0, common_1.Get)('/leads-by-campaign/:brokerID?'),
     __param(0, (0, common_1.Query)('brokerID')),

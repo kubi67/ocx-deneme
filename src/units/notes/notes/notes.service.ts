@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { NotFoundError } from 'rxjs';
 import { Notes } from 'src/models/notes/notes.entity';
 
 import { Repository } from 'typeorm';
@@ -28,6 +29,45 @@ export class NotesService {
     return await this.repo
       .find({ where: { model_id: operatorID } })
       .then((datas) => datas.map((e) => NotesDTO.fromEntity(e)));
+  }
+
+  public async getMyNotes(userID?: string): Promise<any> {
+    if (userID) {
+      return await this.repo
+        .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."user" u ON u.id::uuid = notes.author_id::uuid
+Where model_id='${userID}'`);
+    }
+    return new NotFoundError('User ID musnt null!');
+  }
+
+  public async getMyLeadNotes(authorID?: string) {
+    if (!authorID) {
+      return "User ID can't be empty!";
+    }
+    return await this.repo
+      .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."leads" u ON u.id::uuid = notes.model_id::uuid
+Where author_id='${authorID}'::uuid`);
+  }
+
+  public async getMyUserNotes(authorID: string) {
+    if (!authorID) {
+      return "User ID can't be empty!";
+    }
+    return await this.repo
+      .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."user" u ON u.id::uuid = notes.model_id::uuid
+Where author_id='${authorID}'`);
   }
 
   public async getByIdMany(id: string): Promise<NotesDTO[]> {

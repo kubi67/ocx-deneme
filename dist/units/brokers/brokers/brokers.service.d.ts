@@ -11,6 +11,7 @@ export declare class BrokersService {
     private readonly brokerUserService;
     constructor(repo: Repository<Brokers>, brokerUserRepo: Repository<BrokerUser>, userService: UsersService, brokerUserService: BrokerUserService);
     getAll(): Promise<BrokerDTO[]>;
+    getOperatorByBroker(brokerID?: string): Promise<any>;
     getAllByStatus(status: boolean): Promise<BrokerDTO[]>;
     getByIdMany(id: string): Promise<BrokerDTO[]>;
     getById(id: string): Promise<BrokerDTO>;

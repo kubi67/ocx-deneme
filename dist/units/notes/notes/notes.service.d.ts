@@ -7,6 +7,9 @@ export declare class NotesService {
     getAll(): Promise<NotesDTO[]>;
     getAllByStatus(status: boolean): Promise<NotesDTO[]>;
     getByLeadAndOperator(operatorID: string): Promise<NotesDTO[]>;
+    getMyNotes(userID?: string): Promise<any>;
+    getMyLeadNotes(authorID?: string): Promise<any>;
+    getMyUserNotes(authorID: string): Promise<any>;
     getByIdMany(id: string): Promise<NotesDTO[]>;
     getByAuthor(id: string): Promise<NotesDTO[]>;
     getByModelType(id: string): Promise<NotesDTO[]>;

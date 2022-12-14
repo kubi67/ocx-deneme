@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotesController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const rxjs_1 = require("rxjs");
 const standart_results_1 = require("../../../libs/api-results/standart-results");
 const notes_dto_1 = require("./notes.dto");
 const notes_service_1 = require("./notes.service");
@@ -30,6 +31,18 @@ let NotesController = class NotesController {
     }
     async get(id) {
         return await this.noteService.getById(id);
+    }
+    async getMyNotes(userID) {
+        if (!userID) {
+            return new rxjs_1.NotFoundError('Not Found Notes!');
+        }
+        return await this.noteService.getMyNotes(userID);
+    }
+    async getMyLeadNotes(authorID) {
+        return await this.noteService.getMyLeadNotes(authorID);
+    }
+    async getMyUserNotes(authorID) {
+        return await this.noteService.getMyUserNotes(authorID);
     }
     async getLeadsFull() {
         return await this.noteService.getAllWithAll();
@@ -70,12 +83,33 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NotesController.prototype, "getAllByStatus", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/get/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], NotesController.prototype, "get", null);
+__decorate([
+    (0, common_1.Get)('/my-notes/:userID?'),
+    __param(0, (0, common_1.Query)('userID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], NotesController.prototype, "getMyNotes", null);
+__decorate([
+    (0, common_1.Get)('/my-lead-notes/:authorID?'),
+    __param(0, (0, common_1.Query)('authorID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], NotesController.prototype, "getMyLeadNotes", null);
+__decorate([
+    (0, common_1.Get)('/my-user-notes/:authorID?'),
+    __param(0, (0, common_1.Query)('authorID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], NotesController.prototype, "getMyUserNotes", null);
 __decorate([
     (0, common_1.Get)('/active-leads/:status'),
     __metadata("design:type", Function),

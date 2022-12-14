@@ -33,10 +33,16 @@ export class UserDTO implements Readonly<UserDTO> {
   two_factor_confirmed_at: Date;
 
   @ApiProperty({ required: false })
+  level: number;
+
+  @ApiProperty({ required: false })
   isLeadOperator: boolean;
 
   @ApiProperty({ required: false })
   isTrader: boolean;
+
+  @ApiProperty({ required: false })
+  leadOperatorID: string;
 
   @ApiProperty({ required: false })
   isLast: boolean;
@@ -92,6 +98,8 @@ export class UserDTO implements Readonly<UserDTO> {
   public static from(dto: Partial<UserDTO>) {
     const it = new UserDTO();
     it.id = dto.id;
+    it.leadOperatorID = dto.leadOperatorID;
+    it.level = dto.level;
     it.isLeadOperator = dto.isLeadOperator;
     it.isTrader = dto.isTrader;
     it.isLast = dto.isLast;
@@ -126,6 +134,8 @@ export class UserDTO implements Readonly<UserDTO> {
   public static fromEntity(entity: User) {
     return this.from({
       id: entity.id,
+      level: entity.level,
+      leadOperatorID: entity.leadOperatorID,
       parent_id: entity.parent_id,
       status: entity.status,
       email: entity.email,
@@ -161,6 +171,7 @@ export class UserDTO implements Readonly<UserDTO> {
     const givenData = new User();
 
     givenData.email = dto.email;
+    givenData.leadOperatorID = dto.leadOperatorID;
     givenData.password = dto.password;
     givenData.username = dto.username;
     givenData.parent_id = dto.parent_id;

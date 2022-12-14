@@ -9,8 +9,10 @@ export declare class UserDTO implements Readonly<UserDTO> {
     two_factor_secret: string;
     two_factor_recover_code: string;
     two_factor_confirmed_at: Date;
+    level: number;
     isLeadOperator: boolean;
     isTrader: boolean;
+    leadOperatorID: string;
     isLast: boolean;
     current_broker_id: string;
     setting: string;

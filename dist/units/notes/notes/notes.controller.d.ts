@@ -6,6 +6,9 @@ export declare class NotesController {
     getAll(): Promise<NotesDTO[]>;
     getAllByStatus(status: boolean): Promise<NotesDTO[]>;
     get(id: string): Promise<NotesDTO>;
+    getMyNotes(userID?: string): Promise<any>;
+    getMyLeadNotes(authorID?: string): Promise<any>;
+    getMyUserNotes(authorID?: string): Promise<any>;
     getLeadsFull(): Promise<any>;
     getByAuthor(id: string): Promise<NotesDTO[]>;
     getByModelType(id: string): Promise<NotesDTO[]>;

@@ -10,7 +10,7 @@ export declare class ReportsService {
     private readonly noteService;
     constructor(repo: Repository<Leads>, leadService: LeadsService, userLoginService: UserLoginService, noteService: NotesService);
     getMostGainLeadTraders(): Promise<any>;
-    getBestSalerOperator(startDate?: string, endDate?: string, brokerID?: string): Promise<any>;
+    getBestSalerOperator(brokerID?: string, startDate?: string, endDate?: string): Promise<any>;
     getUserLoginByID(id: string): Promise<any>;
     getCounts(startDate?: string, endDate?: string, brokerID?: string): Promise<any>;
     getPNL(): {
@@ -20,7 +20,7 @@ export declare class ReportsService {
         differenceConst: number;
         month: string;
         prevPrice: number;
-    }[];
+    };
     getMockForTimeSeries(): {
         timeSeries: {
             totalCustomer: number;
@@ -29,26 +29,16 @@ export declare class ReportsService {
                 times: number[];
                 data: {
                     name: string;
-                    values: number[];
+                    data: number[];
                 }[];
             };
         };
-        cardWidget: {
-            totalCustomer: number;
-            totalIncome: string;
-            timeSeries: {
-                times: number[];
-                data: {
-                    name: string;
-                    values: number[];
-                }[];
-            };
-        };
-    }[];
+    };
     getTraderByLocation(country?: number, city?: number, brokerID?: string): Promise<any>;
     getLeadByCampaign(brokerID: string): Promise<any>;
     getBestSalerOperatorWithoutDate(brokerID?: string): Promise<any>;
     getCountsWithoutDate(brokerID?: string): Promise<any>;
+    getTraderCountByOperator(brokerID?: string): Promise<any>;
     getCountOperatedLeads(assignedID?: string, startDate?: string, endDate?: string): Promise<any>;
     getLastNotesByLeadAndOperator(operatorID: string): Promise<import("../notes/notes/notes.dto").NotesDTO[]>;
     getTeamsByBroker(brokerID?: string): Promise<any>;

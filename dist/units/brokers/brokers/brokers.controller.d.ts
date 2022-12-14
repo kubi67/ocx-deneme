@@ -5,6 +5,7 @@ export declare class BrokerController {
     constructor(brokerService: BrokersService);
     getAll(): Promise<BrokerDTO[]>;
     getAllByStatus(status: boolean): Promise<BrokerDTO[]>;
+    getOperatorByBroker(brokerID?: string): Promise<any>;
     getSimpleBroker(): Promise<any>;
     getSimpleBrokerById(id: string): Promise<any>;
     getSimpleBrokerManager(): Promise<any>;

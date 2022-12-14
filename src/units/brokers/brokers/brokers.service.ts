@@ -24,6 +24,16 @@ export class BrokersService {
       .then((datas) => datas.map((e) => BrokerDTO.fromEntity(e)));
   }
 
+  public async getOperatorByBroker(brokerID?: string) {
+    if (brokerID) {
+      return await this.repo
+        .query(`SELECT * FROM public."getOperatorByBroker" where "broker_id"='${brokerID}'
+`);
+    }
+    return await this.repo.query(`SELECT * FROM public."getOperatorByBroker"
+`);
+  }
+
   public async getAllByStatus(status: boolean): Promise<BrokerDTO[]> {
     return await this.repo
       .find({ where: { isDeleted: status } })
@@ -94,7 +104,7 @@ export class BrokersService {
 
   public async getSimpleBrokerManagerByID(id: string): Promise<any> {
     const data = this.brokerUserRepo
-    .query(`SELECT * FROM public."getSimpleBrokerManager" where broker_id='${id}'
+      .query(`SELECT * FROM public."getSimpleBrokerManager" where broker_id='${id}'
     `);
     return data;
   }

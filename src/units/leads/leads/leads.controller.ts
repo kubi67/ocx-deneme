@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -34,7 +35,7 @@ export class LeadsController {
     return await this.leadService.getAllByStatus(status);
   }
 
-  @Get(':id')
+  @Get('/get/:id')
   public async get(@Param('id') id: string): Promise<LeadDTO> {
     return await this.leadService.getById(id);
   }
@@ -56,9 +57,24 @@ export class LeadsController {
     return await this.leadService.getDeliveredLeadsByOperator(operator);
   }
 
+  @Get('/delivered-by-team/:teamID?')
+  public async getDeliveredByTeam(@Query('teamID') teamID?: string) {
+    if (!teamID) {
+      return await this.leadService.getDeliveredLeadsByTeam();
+    }
+    return await this.leadService.getDeliveredLeadsByTeam(teamID);
+  }
+
   @Get('/get-delivered-full/:data')
   public async getDeliveredFull(): Promise<any> {
     return await this.leadService.getDeliveredLeadsFull();
+  }
+
+  @Get('/get-lead-stats/:operatorID?')
+  public async getLeadStats(
+    @Query('operatorID') operatorID?: string,
+  ): Promise<any> {
+    return await this.leadService.getMyLeadStats(operatorID);
   }
 
   @Get('/delivered-full-by-operator/:operator')
@@ -66,6 +82,11 @@ export class LeadsController {
     @Param('operator') operator: string,
   ): Promise<LeadDTO[]> {
     return await this.leadService.getDeliveredLeadsFullByOperator(operator);
+  }
+
+  @Get('/delivered-full-by-lead/:leadID')
+  public async getDeliveredFullByLead(@Param('leadID') leadID: string) {
+    return await this.leadService.getDeliveredLeadsFullByLead(leadID);
   }
 
   @Get('/get-by-campaign/:campaign')

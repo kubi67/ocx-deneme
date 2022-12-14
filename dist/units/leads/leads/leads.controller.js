@@ -40,11 +40,23 @@ let LeadsController = class LeadsController {
     async getDeliveredByOperator(operator) {
         return await this.leadService.getDeliveredLeadsByOperator(operator);
     }
+    async getDeliveredByTeam(teamID) {
+        if (!teamID) {
+            return await this.leadService.getDeliveredLeadsByTeam();
+        }
+        return await this.leadService.getDeliveredLeadsByTeam(teamID);
+    }
     async getDeliveredFull() {
         return await this.leadService.getDeliveredLeadsFull();
     }
+    async getLeadStats(operatorID) {
+        return await this.leadService.getMyLeadStats(operatorID);
+    }
     async getDeliveredFullByOperator(operator) {
         return await this.leadService.getDeliveredLeadsFullByOperator(operator);
+    }
+    async getDeliveredFullByLead(leadID) {
+        return await this.leadService.getDeliveredLeadsFullByLead(leadID);
     }
     async getByCampaign(campaign) {
         return await this.leadService.getByCampaign(campaign);
@@ -97,7 +109,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LeadsController.prototype, "getAllByStatus", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/get/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -123,11 +135,25 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LeadsController.prototype, "getDeliveredByOperator", null);
 __decorate([
+    (0, common_1.Get)('/delivered-by-team/:teamID?'),
+    __param(0, (0, common_1.Query)('teamID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LeadsController.prototype, "getDeliveredByTeam", null);
+__decorate([
     (0, common_1.Get)('/get-delivered-full/:data'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], LeadsController.prototype, "getDeliveredFull", null);
+__decorate([
+    (0, common_1.Get)('/get-lead-stats/:operatorID?'),
+    __param(0, (0, common_1.Query)('operatorID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LeadsController.prototype, "getLeadStats", null);
 __decorate([
     (0, common_1.Get)('/delivered-full-by-operator/:operator'),
     __param(0, (0, common_1.Param)('operator')),
@@ -135,6 +161,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LeadsController.prototype, "getDeliveredFullByOperator", null);
+__decorate([
+    (0, common_1.Get)('/delivered-full-by-lead/:leadID'),
+    __param(0, (0, common_1.Param)('leadID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LeadsController.prototype, "getDeliveredFullByLead", null);
 __decorate([
     (0, common_1.Get)('/get-by-campaign/:campaign'),
     __param(0, (0, common_1.Param)('campaign')),

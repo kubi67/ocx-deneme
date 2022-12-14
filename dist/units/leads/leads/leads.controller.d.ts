@@ -9,8 +9,11 @@ export declare class LeadsController {
     getLeadsFull(): Promise<any>;
     getDelivered(): Promise<any>;
     getDeliveredByOperator(operator: string): Promise<LeadDTO[]>;
+    getDeliveredByTeam(teamID?: string): Promise<any>;
     getDeliveredFull(): Promise<any>;
+    getLeadStats(operatorID?: string): Promise<any>;
     getDeliveredFullByOperator(operator: string): Promise<LeadDTO[]>;
+    getDeliveredFullByLead(leadID: string): Promise<any>;
     getByCampaign(campaign: string): Promise<LeadDTO[]>;
     getByDelivery(delivery: boolean): Promise<LeadDTO[]>;
     getByOperator(operator: string): Promise<LeadDTO[]>;

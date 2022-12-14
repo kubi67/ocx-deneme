@@ -28,6 +28,12 @@ let BrokerController = class BrokerController {
     async getAllByStatus(status) {
         return await this.brokerService.getAllByStatus(status);
     }
+    async getOperatorByBroker(brokerID) {
+        if (!brokerID) {
+            return await this.brokerService.getOperatorByBroker();
+        }
+        return await this.brokerService.getOperatorByBroker(brokerID);
+    }
     async getSimpleBroker() {
         return await this.brokerService.getSimpleAllBrokers();
     }
@@ -78,6 +84,13 @@ __decorate([
     __metadata("design:paramtypes", [Boolean]),
     __metadata("design:returntype", Promise)
 ], BrokerController.prototype, "getAllByStatus", null);
+__decorate([
+    (0, common_1.Get)('/broker-operators/:brokerID?'),
+    __param(0, (0, common_1.Query)('brokerID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BrokerController.prototype, "getOperatorByBroker", null);
 __decorate([
     (0, common_1.Get)('/simple-broker'),
     __metadata("design:type", Function),

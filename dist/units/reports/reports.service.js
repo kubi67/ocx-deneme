@@ -30,7 +30,7 @@ let ReportsService = class ReportsService {
     async getMostGainLeadTraders() {
         return await this.repo.query('SELECT * FROM public."getBestSalerOperator"');
     }
-    async getBestSalerOperator(startDate, endDate, brokerID) {
+    async getBestSalerOperator(brokerID, startDate, endDate) {
         if (startDate && endDate && !brokerID) {
             return await this.repo
                 .query(`select Count(*) as count, "assigned_user", u.firstname as operator_firstname, 
@@ -89,6 +89,18 @@ order by count desc
 LIMIT 1
 `);
         }
+        console.log('servis', brokerID);
+        return await this.repo
+            .query(`select Count(*) as count, "assigned_user", u.firstname as operator_firstname, 
+u.lastname as operator_lastname
+from leads
+LEFT JOIN public."user" u ON u.id = leads."assigned_user" 
+where assigned_user is not null 
+AND assigned_broker='${brokerID}'::uuid
+group by "assigned_user", u.firstname , u.lastname
+order by count desc 
+LIMIT 1
+`);
     }
     async getUserLoginByID(id) {
         return await this.userLoginService.getByUserId(id);
@@ -163,81 +175,32 @@ order by count desc `);
         }
     }
     getPNL() {
-        const data = [
-            {
-                price: 24.895,
-                priceType: 'USD',
-                difference: -10.4,
-                differenceConst: -3000,
-                month: 'Ekim',
-                prevPrice: 27.556,
-            },
-            {
-                price: 26.795,
-                priceType: 'USD',
-                difference: -10.4,
-                differenceConst: -2000,
-                month: 'Ekim',
-                prevPrice: 24.895,
-            },
-            {
-                price: 19.195,
-                priceType: 'USD',
-                difference: -10.4,
-                differenceConst: -5000,
-                month: 'Ekim',
-                prevPrice: 26.795,
-            },
-            {
-                price: 19.195,
-                priceType: 'USD',
-                difference: -10.4,
-                differenceConst: -3000,
-                month: 'Ekim',
-                prevPrice: 27.556,
-            },
-            {
-                price: 4.895,
-                priceType: 'USD',
-                difference: -10.4,
-                differenceConst: -3000,
-                month: 'Ekim',
-                prevPrice: 27.556,
-            },
-        ];
+        const data = {
+            price: 24.895,
+            priceType: 'USD',
+            difference: -10.4,
+            differenceConst: -3000,
+            month: 'Ekim',
+            prevPrice: 27.556,
+        };
         return data;
     }
     getMockForTimeSeries() {
-        const data = [
-            {
+        const data = {
+            timeSeries: {
+                totalCustomer: 433,
+                totalIncome: '$78,346',
                 timeSeries: {
-                    totalCustomer: 433,
-                    totalIncome: '$78,346',
-                    timeSeries: {
-                        times: [2016, 2017, 2018, 2019],
-                        data: [
-                            {
-                                name: 'Müşteriler',
-                                values: [343, 345, 235, 656],
-                            },
-                        ],
-                    },
-                },
-                cardWidget: {
-                    totalCustomer: 433,
-                    totalIncome: '$78,346',
-                    timeSeries: {
-                        times: [2016, 2017, 2018, 2019],
-                        data: [
-                            {
-                                name: 'Müşteriler',
-                                values: [343, 345, 235, 656],
-                            },
-                        ],
-                    },
+                    times: [2016, 2017, 2018, 2019],
+                    data: [
+                        {
+                            name: 'Müşteriler',
+                            data: [343, 345, 235, 656],
+                        },
+                    ],
                 },
             },
-        ];
+        };
         return data;
     }
     async getTraderByLocation(country, city, brokerID) {
@@ -309,22 +272,7 @@ LIMIT 1
             console.log('tarih yok');
             const traderCount = await this.repo.query(`SELECT Count(*) as tradercount from public."user" where "isTrader" = true AND current_broker_id='${brokerID}'::uuid`);
             const operatorCount = await this.repo.query(`SELECT Count(*) as operatorCount from public."user"  where "isTrader" = true AND current_broker_id='${brokerID}'::uuid`);
-            const fullTraderCountByOperator = await this.repo
-                .query(`select Count(*) as count, "assigned_user" as operator_id, u.firstname as operator_firstname, 
-u.lastname as operator_lastname
-from leads
-LEFT JOIN public."user" u ON u.id = leads."assigned_user" 
-where assigned_user is not null 
-AND "leads".created_at BETWEEN '2020-05-05 00:00:00'::timestamp
-AND now()::timestamp
-AND assigned_broker='${brokerID}'::uuid
-group by "assigned_user", u.firstname , u.lastname
-order by count desc `);
-            return {
-                operatorCount,
-                traderCount,
-                fullTraderCountByOperator,
-            };
+            return [...traderCount, ...operatorCount];
         }
         const fullTraderCountByOperator = await this.repo
             .query(`select Count(*) as count, "assigned_user" as operator_id, u.firstname as operator_firstname, 
@@ -344,6 +292,32 @@ order by count desc `);
             traderCount,
             fullTraderCountByOperator,
         };
+    }
+    async getTraderCountByOperator(brokerID) {
+        if (!brokerID) {
+            return await this.repo
+                .query(`select Count(*) as count, "assigned_user" as operator_id, u.firstname as operator_firstname, 
+u.lastname as operator_lastname
+from leads
+LEFT JOIN public."user" u ON u.id = leads."assigned_user" 
+where assigned_user is not null 
+AND "leads".created_at BETWEEN '2020-05-05 00:00:00'::timestamp
+AND now()::timestamp
+
+group by "assigned_user", u.firstname , u.lastname
+order by count desc `);
+        }
+        return await this.repo
+            .query(`select Count(*) as count, "assigned_user" as operator_id, u.firstname as operator_firstname, 
+u.lastname as operator_lastname
+from leads
+LEFT JOIN public."user" u ON u.id = leads."assigned_user" 
+where assigned_user is not null 
+AND "leads".created_at BETWEEN '2020-05-05 00:00:00'::timestamp
+AND now()::timestamp
+AND assigned_broker='${brokerID}'::uuid
+group by "assigned_user", u.firstname , u.lastname
+order by count desc `);
     }
     async getCountOperatedLeads(assignedID, startDate, endDate) {
         if (startDate && endDate && assignedID) {

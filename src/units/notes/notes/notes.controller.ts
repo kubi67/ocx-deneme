@@ -3,12 +3,15 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Post,
   Put,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { NotFoundError } from 'rxjs';
 import { TransformInterceptor } from 'src/libs/api-results/standart-results';
 import { NotesDTO } from './notes.dto';
 import { NotesService } from './notes.service';
@@ -31,9 +34,31 @@ export class NotesController {
     return await this.noteService.getAllByStatus(status);
   }
 
-  @Get(':id')
+  @Get('/get/:id')
   public async get(@Param('id') id: string): Promise<NotesDTO> {
     return await this.noteService.getById(id);
+  }
+
+  @Get('/my-notes/:userID?')
+  public async getMyNotes(@Query('userID') userID?: string): Promise<any> {
+    if (!userID) {
+      return new NotFoundError('Not Found Notes!');
+    }
+    return await this.noteService.getMyNotes(userID);
+  }
+
+  @Get('/my-lead-notes/:authorID?')
+  public async getMyLeadNotes(
+    @Query('authorID') authorID?: string,
+  ): Promise<any> {
+    return await this.noteService.getMyLeadNotes(authorID);
+  }
+
+  @Get('/my-user-notes/:authorID?')
+  public async getMyUserNotes(
+    @Query('authorID') authorID?: string,
+  ): Promise<any> {
+    return await this.noteService.getMyUserNotes(authorID);
   }
 
   @Get('/active-leads/:status')

@@ -15,6 +15,9 @@ export class User extends BaseEntity {
   @Column({ type: 'integer' })
   status: number;
 
+  @Column({ type: 'uuid', default: null })
+  leadOperatorID: string;
+
   @Column({ type: 'character varying', length: 128 })
   email: string;
 
@@ -50,6 +53,9 @@ export class User extends BaseEntity {
 
   @Column({ type: 'character varying', length: 64 })
   lastname: string;
+
+  @Column({ type: 'bigint', default: 0 })
+  level: number;
 
   @Column({ type: 'character varying', length: 255, nullable: true })
   access_token: string;

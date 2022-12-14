@@ -14,8 +14,6 @@ export class ReportsController {
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
     @Query('brokerID') brokerID?: string,
-    @Query('city') city?: number,
-    @Query('country') country?: number,
   ): Promise<any> {
     if (!brokerID && !startDate && !endDate) {
       return {
@@ -25,6 +23,8 @@ export class ReportsController {
         Summaries: await this.reportService.getCountsWithoutDate(),
         PNL: await this.reportService.getPNL(),
         WidgetDatas: await this.reportService.getMockForTimeSeries(),
+        TraderCountByOperator:
+          await this.reportService.getTraderCountByOperator(brokerID),
       };
     }
     if (brokerID && !startDate && !endDate) {
@@ -35,6 +35,8 @@ export class ReportsController {
         BestSalerOperator:
           await this.reportService.getBestSalerOperatorWithoutDate(brokerID),
         Summaries: await this.reportService.getCountsWithoutDate(brokerID),
+        TraderCountByOperator:
+          await this.reportService.getTraderCountByOperator(brokerID),
         PNL: await this.reportService.getPNL(),
         WidgetDatas: await this.reportService.getMockForTimeSeries(),
       };
@@ -51,9 +53,46 @@ export class ReportsController {
         endDate,
         brokerID,
       ),
+      TraderCountByOperator: await this.reportService.getTraderCountByOperator(
+        brokerID,
+      ),
       PNL: await this.reportService.getPNL(),
       WidgetDatas: await this.reportService.getMockForTimeSeries(),
     };
+  }
+
+  @Get('/best-saler/:brokerID?/:startDate?/:endDate?')
+  public async getBestSaler(
+    @Query('brokerID') brokerID: string,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
+  ) {
+    console.log(brokerID);
+    if (brokerID && startDate && endDate) {
+      return await this.reportService.getBestSalerOperator(
+        startDate,
+        endDate,
+        brokerID,
+      );
+    }
+
+    if (brokerID && !startDate && !endDate) {
+      return await this.reportService.getBestSalerOperator(brokerID);
+    }
+
+    if (brokerID && startDate && !endDate) {
+      return await this.reportService.getBestSalerOperator(
+        startDate,
+
+        brokerID,
+      );
+    }
+
+    if (!brokerID && !startDate && !endDate) {
+      return await this.reportService.getBestSalerOperator();
+    }
+
+    return await this.reportService.getBestSalerOperator(brokerID);
   }
 
   @Get('/leads-by-campaign/:brokerID?')

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotesService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const rxjs_1 = require("rxjs");
 const notes_entity_1 = require("../../../models/notes/notes.entity");
 const typeorm_2 = require("typeorm");
 const notes_dto_1 = require("./notes.dto");
@@ -36,6 +37,42 @@ let NotesService = class NotesService {
         return await this.repo
             .find({ where: { model_id: operatorID } })
             .then((datas) => datas.map((e) => notes_dto_1.NotesDTO.fromEntity(e)));
+    }
+    async getMyNotes(userID) {
+        if (userID) {
+            return await this.repo
+                .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."user" u ON u.id::uuid = notes.author_id::uuid
+Where model_id='${userID}'`);
+        }
+        return new rxjs_1.NotFoundError('User ID musnt null!');
+    }
+    async getMyLeadNotes(authorID) {
+        if (!authorID) {
+            return "User ID can't be empty!";
+        }
+        return await this.repo
+            .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."leads" u ON u.id::uuid = notes.model_id::uuid
+Where author_id='${authorID}'::uuid`);
+    }
+    async getMyUserNotes(authorID) {
+        if (!authorID) {
+            return "User ID can't be empty!";
+        }
+        return await this.repo
+            .query(`select notes.id as note_id, notes.author_id, notes.model_id as note_target, notes.created_at as note_created_at,
+notes.note,
+u.id as author_user_id, u.firstname as author_name, u.lastname as author_lastname
+from notes
+INNER JOIN public."user" u ON u.id::uuid = notes.model_id::uuid
+Where author_id='${authorID}'`);
     }
     async getByIdMany(id) {
         return await this.repo

@@ -17,6 +17,8 @@ class UserDTO {
     static from(dto) {
         const it = new UserDTO();
         it.id = dto.id;
+        it.leadOperatorID = dto.leadOperatorID;
+        it.level = dto.level;
         it.isLeadOperator = dto.isLeadOperator;
         it.isTrader = dto.isTrader;
         it.isLast = dto.isLast;
@@ -50,6 +52,8 @@ class UserDTO {
     static fromEntity(entity) {
         return this.from({
             id: entity.id,
+            level: entity.level,
+            leadOperatorID: entity.leadOperatorID,
             parent_id: entity.parent_id,
             status: entity.status,
             email: entity.email,
@@ -83,6 +87,7 @@ class UserDTO {
     static toEntity(dto) {
         const givenData = new user_entity_1.User();
         givenData.email = dto.email;
+        givenData.leadOperatorID = dto.leadOperatorID;
         givenData.password = dto.password;
         givenData.username = dto.username;
         givenData.parent_id = dto.parent_id;
@@ -154,12 +159,20 @@ __decorate([
 ], UserDTO.prototype, "two_factor_confirmed_at", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Number)
+], UserDTO.prototype, "level", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Boolean)
 ], UserDTO.prototype, "isLeadOperator", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Boolean)
 ], UserDTO.prototype, "isTrader", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", String)
+], UserDTO.prototype, "leadOperatorID", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     __metadata("design:type", Boolean)

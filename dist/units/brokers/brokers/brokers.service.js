@@ -33,6 +33,15 @@ let BrokersService = class BrokersService {
             .find()
             .then((datas) => datas.map((e) => broker_dto_1.BrokerDTO.fromEntity(e)));
     }
+    async getOperatorByBroker(brokerID) {
+        if (brokerID) {
+            return await this.repo
+                .query(`SELECT * FROM public."getOperatorByBroker" where "broker_id"='${brokerID}'
+`);
+        }
+        return await this.repo.query(`SELECT * FROM public."getOperatorByBroker"
+`);
+    }
     async getAllByStatus(status) {
         return await this.repo
             .find({ where: { isDeleted: status } })

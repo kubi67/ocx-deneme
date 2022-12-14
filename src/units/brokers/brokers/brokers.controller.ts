@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -29,6 +30,14 @@ export class BrokerController {
     @Param('status') status: boolean,
   ): Promise<BrokerDTO[]> {
     return await this.brokerService.getAllByStatus(status);
+  }
+
+  @Get('/broker-operators/:brokerID?')
+  public async getOperatorByBroker(@Query('brokerID') brokerID?: string) {
+    if (!brokerID) {
+      return await this.brokerService.getOperatorByBroker();
+    }
+    return await this.brokerService.getOperatorByBroker(brokerID);
   }
 
   @Get('/simple-broker')

@@ -4,6 +4,7 @@ import { Leads } from 'src/models/leads/leads.entity';
 import { RolesDescriptionService } from 'src/units/roles/roles-description/roles-description.service';
 import { RolesService } from 'src/units/roles/roles/roles.service';
 import { RoleUserService } from 'src/units/user/role_user/role_user.service';
+import { TeamUserService } from 'src/units/user/team_user/team_user.service';
 import { UsersService } from 'src/units/user/user/user.service';
 import { Repository } from 'typeorm';
 import { LeadDTO } from './leads.dto';
@@ -17,6 +18,7 @@ export class LeadsService {
     private readonly roleService: RolesService,
     private readonly userRoleService: RoleUserService,
     private readonly roleDescriptionService: RolesDescriptionService,
+    private readonly teamUserService: TeamUserService,
   ) {}
 
   public async getAll(): Promise<LeadDTO[]> {
@@ -42,6 +44,8 @@ export class LeadsService {
 `);
   }
 
+  //public async getLeadsByTeams
+
   public async getDeliveredLeadsFullByOperator(
     operatorID: string,
   ): Promise<any> {
@@ -50,8 +54,49 @@ export class LeadsService {
 `);
   }
 
+  public async getDeliveredLeadsByTeam(teamID?: string): Promise<any> {
+    if (!teamID) {
+      return await this.repo
+        .query(`select leads.id as lead_id, leads.broker_id as lead_broker_id, leads.firstname as lead_firstname,
+leads.lastname as lead_lastname, leads.email as leads_email, b.name as broker_name, c.name as campaign_name
+from leads 
+INNER JOIN team_user t ON t.user_id = leads.assigned_user
+LEFT JOIN ad_campaigns c ON c.id = leads.source_id
+LEFT JOIN brokers b ON b.id = leads.broker_id
+
+ORDER BY leads.campaign_id DESC`);
+    }
+    return await this.repo
+      .query(`select leads.id as lead_id, leads.broker_id as lead_broker_id, leads.firstname as lead_firstname,
+leads.lastname as lead_lastname, leads.email as leads_email, b.name as broker_name, c.name as campaign_name
+from leads 
+INNER JOIN team_user t ON t.user_id = leads.assigned_user
+LEFT JOIN ad_campaigns c ON c.id = leads.source_id
+LEFT JOIN brokers b ON b.id = leads.broker_id
+Where t.team_id='${teamID}'::uuid
+ORDER BY leads.campaign_id DESC`);
+  }
+
+  public async getDeliveredLeadsFullByLead(leadID: string): Promise<any> {
+    return await this.repo
+      .query(`SELECT * FROM public."getDeliveredLeadsFull" where lead_id='${leadID}'
+`);
+  }
+
   public async getDeliveredLeads(): Promise<any> {
     return await this.repo.query(`SELECT * FROM public."getDeliveredLeads"`);
+  }
+
+  public async getMyLeadStats(operatorID?: string): Promise<any> {
+    const transferedLead = await this.repo
+      .query(`select count(*) as transferedLead from public."user" where "isTrader"=true and "leadOperatorID"='${operatorID}'::uuid
+`);
+
+    const assignedLead = await this.repo
+      .query(`select count(*) as assignedLead from public."leads" where "assigned_user"='${operatorID}'::uuid
+
+`);
+    return [...transferedLead, ...assignedLead];
   }
 
   public async getDeliveredLeadsByOperator(operatorID: string): Promise<any> {

@@ -1,0 +1,183 @@
+Date : 2022-12-13 15:07:58
+Directory : /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service
+Total : 108 files,  1968 codes, 11 comments, 136 blanks, all 2115 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| TypeScript |         65 |      1,159 |         24 |        124 |      1,307 |
+| JavaScript |         39 |        732 |         -4 |          7 |        735 |
+| JSON       |          2 |         67 |          0 |          0 |         67 |
+| Docker     |          1 |          6 |         -9 |          5 |          2 |
+| Ignore     |          1 |          4 |          0 |          0 |          4 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                 |        108 |      1,968 |         11 |        136 |      2,115 |
+| dist                                                                                                                              |         68 |        803 |         -4 |          3 |        802 |
+| dist/configs                                                                                                                      |          1 |         -3 |          0 |          0 |         -3 |
+| dist/decorators                                                                                                                   |          2 |        -10 |         -1 |         -1 |        -12 |
+| dist/models                                                                                                                       |          6 |         19 |          0 |          0 |         19 |
+| dist/models/brokers                                                                                                               |          2 |          9 |          0 |          0 |          9 |
+| dist/models/rolesNpermissions                                                                                                     |          2 |          5 |          0 |          0 |          5 |
+| dist/models/users                                                                                                                 |          2 |          5 |          0 |          0 |          5 |
+| dist/units                                                                                                                        |         57 |        794 |         -3 |          4 |        795 |
+| dist/units/brokers                                                                                                                |          6 |         32 |          0 |          0 |         32 |
+| dist/units/brokers/brokers                                                                                                        |          6 |         32 |          0 |          0 |         32 |
+| dist/units/external                                                                                                               |          6 |         59 |          3 |          3 |         65 |
+| dist/units/leads                                                                                                                  |          5 |         60 |          0 |          1 |         61 |
+| dist/units/leads/leads                                                                                                            |          5 |         60 |          0 |          1 |         61 |
+| dist/units/messages                                                                                                               |          8 |       -372 |         -4 |         -4 |       -380 |
+| dist/units/notes                                                                                                                  |          5 |         84 |          0 |          0 |         84 |
+| dist/units/notes/notes                                                                                                            |          5 |         84 |          0 |          0 |         84 |
+| dist/units/notification                                                                                                           |          6 |        -59 |         -3 |         -3 |        -65 |
+| dist/units/reports                                                                                                                |          5 |        602 |          0 |          6 |        608 |
+| dist/units/roles                                                                                                                  |          4 |          6 |          0 |          0 |          6 |
+| dist/units/roles/roles-description                                                                                                |          2 |          8 |          0 |          0 |          8 |
+| dist/units/roles/roles_permissions                                                                                                |          2 |         -2 |          0 |          0 |         -2 |
+| dist/units/user                                                                                                                   |         12 |        382 |          1 |          1 |        384 |
+| dist/units/user/auth                                                                                                              |          1 |         -1 |          0 |          0 |         -1 |
+| dist/units/user/user                                                                                                              |          9 |        377 |          1 |          1 |        379 |
+| dist/units/user/user_login                                                                                                        |          2 |          6 |          0 |          0 |          6 |
+| src                                                                                                                               |         36 |      1,088 |         24 |        128 |      1,240 |
+| src/configs                                                                                                                       |          1 |         -3 |          3 |          0 |          0 |
+| src/models                                                                                                                        |          3 |         10 |          0 |          2 |         12 |
+| src/models/brokers                                                                                                                |          1 |          6 |          0 |          0 |          6 |
+| src/models/rolesNpermissions                                                                                                      |          1 |          2 |          0 |          1 |          3 |
+| src/models/users                                                                                                                  |          1 |          2 |          0 |          1 |          3 |
+| src/units                                                                                                                         |         30 |      1,078 |         21 |        125 |      1,224 |
+| src/units/brokers                                                                                                                 |          3 |         22 |          0 |          3 |         25 |
+| src/units/brokers/brokers                                                                                                         |          3 |         22 |          0 |          3 |         25 |
+| src/units/external                                                                                                                |          5 |         42 |          0 |         16 |         58 |
+| src/units/leads                                                                                                                   |          3 |         42 |          1 |          6 |         49 |
+| src/units/leads/leads                                                                                                             |          3 |         42 |          1 |          6 |         49 |
+| src/units/notes                                                                                                                   |          3 |         65 |          0 |          5 |         70 |
+| src/units/notes/notes                                                                                                             |          3 |         65 |          0 |          5 |         70 |
+| src/units/reports                                                                                                                 |          5 |        649 |          4 |         63 |        716 |
+| src/units/roles                                                                                                                   |          4 |          3 |          6 |          2 |         11 |
+| src/units/roles/roles-description                                                                                                 |          2 |          5 |          0 |          2 |          7 |
+| src/units/roles/roles_permissions                                                                                                 |          2 |         -2 |          6 |          0 |          4 |
+| src/units/user                                                                                                                    |          7 |        255 |         10 |         30 |        295 |
+| src/units/user/auth                                                                                                               |          1 |         -3 |         10 |          1 |          8 |
+| src/units/user/user                                                                                                               |          5 |        253 |          0 |         28 |        281 |
+| src/units/user/user_login                                                                                                         |          1 |          5 |          0 |          1 |          6 |
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                          | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/.dockerignore                                                   | Ignore     |          4 |          0 |          0 |          4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/Dockerfile                                                      | Docker     |          6 |         -9 |          5 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/app.module.js                                              | JavaScript |          2 |          0 |          0 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/configs/config.service.js                                  | JavaScript |         -3 |          0 |          0 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/decorators/role-decorator.d.ts                             | TypeScript |         -3 |          0 |         -1 |         -4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/decorators/role-decorator.js                               | JavaScript |         -7 |         -1 |          0 |         -8 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/main.js                                                    | JavaScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/brokers/brokers.entity.d.ts                         | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/brokers/brokers.entity.js                           | JavaScript |          8 |          0 |          0 |          8 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/rolesNpermissions/roles_description.entity.d.ts     | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/rolesNpermissions/roles_description.entity.js       | JavaScript |          4 |          0 |          0 |          4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/users/user.entity.d.ts                              | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/models/users/user.entity.js                                | JavaScript |          4 |          0 |          0 |          4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/broker.dto.d.ts                      | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/broker.dto.js                        | JavaScript |          7 |          0 |          0 |          7 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/brokers.controller.d.ts              | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/brokers.controller.js                | JavaScript |         13 |          0 |          0 |         13 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/brokers.service.d.ts                 | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/brokers/brokers/brokers.service.js                   | JavaScript |          9 |          0 |          0 |          9 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.controller.d.ts                    | TypeScript |          2 |          0 |          1 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.controller.js                      | JavaScript |         16 |          1 |          0 |         17 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.module.d.ts                        | TypeScript |          2 |          0 |          1 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.module.js                          | JavaScript |         21 |          1 |          0 |         22 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.service.d.ts                       | TypeScript |          2 |          0 |          1 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/external/external.service.js                         | JavaScript |         16 |          1 |          0 |         17 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/leads/leads/leads.controller.d.ts                    | TypeScript |          2 |          0 |          0 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/leads/leads/leads.controller.js                      | JavaScript |         23 |          0 |          0 |         23 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/leads/leads/leads.module.js                          | JavaScript |          2 |          0 |          0 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/leads/leads/leads.service.d.ts                       | TypeScript |          4 |          0 |          0 |          4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/leads/leads/leads.service.js                         | JavaScript |         29 |          0 |          1 |         30 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.controller.d.ts                    | TypeScript |        -15 |          0 |         -1 |        -16 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.controller.js                      | JavaScript |       -121 |         -1 |          0 |       -122 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.dto.d.ts                           | TypeScript |        -14 |          0 |         -1 |        -15 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.dto.js                             | JavaScript |        -85 |         -1 |          0 |        -86 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.module.d.ts                        | TypeScript |         -2 |          0 |         -1 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.module.js                          | JavaScript |        -24 |         -1 |          0 |        -25 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.service.d.ts                       | TypeScript |        -18 |          0 |         -1 |        -19 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/messages/messages.service.js                         | JavaScript |        -93 |         -1 |          0 |        -94 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notes/notes/notes.controller.d.ts                    | TypeScript |          3 |          0 |          0 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notes/notes/notes.controller.js                      | JavaScript |         34 |          0 |          0 |         34 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notes/notes/notes.module.js                          | JavaScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notes/notes/notes.service.d.ts                       | TypeScript |          4 |          0 |          0 |          4 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notes/notes/notes.service.js                         | JavaScript |         42 |          0 |          0 |         42 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.controller.d.ts            | TypeScript |         -2 |          0 |         -1 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.controller.js              | JavaScript |        -16 |         -1 |          0 |        -17 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.module.d.ts                | TypeScript |         -2 |          0 |         -1 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.module.js                  | JavaScript |        -21 |         -1 |          0 |        -22 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.service.d.ts               | TypeScript |         -2 |          0 |         -1 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/notification/notification.service.js                 | JavaScript |        -16 |         -1 |          0 |        -17 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/reports/reports.controller.d.ts                      | TypeScript |          9 |          0 |          0 |          9 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/reports/reports.controller.js                        | JavaScript |        162 |          0 |          0 |        162 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/reports/reports.module.js                            | JavaScript |         11 |          0 |          0 |         11 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/reports/reports.service.d.ts                         | TypeScript |         43 |          0 |          0 |         43 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/reports/reports.service.js                           | JavaScript |        377 |          0 |          6 |        383 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/roles/roles-description/roles-description.dto.d.ts   | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/roles/roles-description/roles-description.dto.js     | JavaScript |          7 |          0 |          0 |          7 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/roles/roles_permissions/roles_permissions.module.js  | JavaScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/roles/roles_permissions/roles_permissions.service.js | JavaScript |         -3 |          0 |          0 |         -3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/auth/auth.service.js                            | JavaScript |         -1 |          0 |          0 |         -1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user-create.dto.d.ts                       | TypeScript |         36 |          0 |          1 |         37 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user-create.dto.js                         | JavaScript |        242 |          1 |          0 |        243 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.controller.d.ts                       | TypeScript |          5 |          0 |          0 |          5 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.controller.js                         | JavaScript |         22 |          0 |          0 |         22 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.dto.d.ts                              | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.dto.js                                | JavaScript |          6 |          0 |          0 |          6 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.module.js                             | JavaScript |         14 |          0 |          0 |         14 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.service.d.ts                          | TypeScript |          8 |          0 |          0 |          8 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user/user.service.js                            | JavaScript |         43 |          0 |          0 |         43 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user_login/user_login.service.d.ts              | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/dist/units/user/user_login/user_login.service.js                | JavaScript |          5 |          0 |          0 |          5 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/package-lock.json                                               | JSON       |         66 |          0 |          0 |         66 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/package.json                                                    | JSON       |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/app.module.ts                                               | TypeScript |          2 |          0 |          0 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/configs/config.service.ts                                   | TypeScript |         -3 |          3 |          0 |          0 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/main.ts                                                     | TypeScript |          1 |          0 |          1 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/models/brokers/brokers.entity.ts                            | TypeScript |          6 |          0 |          0 |          6 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/models/rolesNpermissions/roles_description.entity.ts        | TypeScript |          2 |          0 |          1 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/models/users/user.entity.ts                                 | TypeScript |          2 |          0 |          1 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/brokers/brokers/broker.dto.ts                         | TypeScript |          5 |          0 |          1 |          6 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/brokers/brokers/brokers.controller.ts                 | TypeScript |          8 |          0 |          1 |          9 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/brokers/brokers/brokers.service.ts                    | TypeScript |          9 |          0 |          1 |         10 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/external/external.controller.spec.ts                  | TypeScript |         14 |          0 |          5 |         19 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/external/external.controller.ts                       | TypeScript |          3 |          0 |          2 |          5 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/external/external.module.ts                           | TypeScript |          8 |          0 |          2 |         10 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/external/external.service.spec.ts                     | TypeScript |         14 |          0 |          5 |         19 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/external/external.service.ts                          | TypeScript |          3 |          0 |          2 |          5 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/leads/leads/leads.controller.ts                       | TypeScript |         12 |          0 |          2 |         14 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/leads/leads/leads.module.ts                           | TypeScript |          2 |          0 |          0 |          2 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/leads/leads/leads.service.ts                          | TypeScript |         28 |          1 |          4 |         33 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/notes/notes/notes.controller.ts                       | TypeScript |         22 |          0 |          3 |         25 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/notes/notes/notes.module.ts                           | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/notes/notes/notes.service.ts                          | TypeScript |         42 |          0 |          2 |         44 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/reports/reports.controller.spec.ts                    | TypeScript |         14 |          0 |          5 |         19 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/reports/reports.controller.ts                         | TypeScript |        193 |          0 |         18 |        211 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/reports/reports.module.ts                             | TypeScript |         19 |          0 |          2 |         21 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/reports/reports.service.spec.ts                       | TypeScript |         14 |          0 |          5 |         19 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/reports/reports.service.ts                            | TypeScript |        409 |          4 |         33 |        446 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/roles/roles-description/roles-description.dto.ts      | TypeScript |          5 |          0 |          1 |          6 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/roles/roles-description/roles-description.service.ts  | TypeScript |          0 |          0 |          1 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/roles/roles_permissions/roles_permissions.module.ts   | TypeScript |          1 |          0 |          0 |          1 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/roles/roles_permissions/roles_permissions.service.ts  | TypeScript |         -3 |          6 |          0 |          3 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/auth/auth.service.ts                             | TypeScript |         -3 |         10 |          1 |          8 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user/user-create.dto.ts                          | TypeScript |        176 |          0 |         22 |        198 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user/user.controller.ts                          | TypeScript |         13 |          0 |          2 |         15 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user/user.dto.ts                                 | TypeScript |          4 |          0 |          1 |          5 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user/user.module.ts                              | TypeScript |         14 |          0 |          0 |         14 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user/user.service.ts                             | TypeScript |         46 |          0 |          3 |         49 |
+| /Users/overcodexdev/Desktop/overcodex-projects/ocx-crm-db-service/src/units/user/user_login/user_login.service.ts                 | TypeScript |          5 |          0 |          1 |          6 |
+| Total                                                                                                                             |            |      1,968 |         11 |        136 |      2,115 |
++-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

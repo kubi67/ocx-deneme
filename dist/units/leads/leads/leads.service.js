@@ -19,16 +19,18 @@ const leads_entity_1 = require("../../../models/leads/leads.entity");
 const roles_description_service_1 = require("../../roles/roles-description/roles-description.service");
 const roles_service_1 = require("../../roles/roles/roles.service");
 const role_user_service_1 = require("../../user/role_user/role_user.service");
+const team_user_service_1 = require("../../user/team_user/team_user.service");
 const user_service_1 = require("../../user/user/user.service");
 const typeorm_2 = require("typeorm");
 const leads_dto_1 = require("./leads.dto");
 let LeadsService = class LeadsService {
-    constructor(repo, userService, roleService, userRoleService, roleDescriptionService) {
+    constructor(repo, userService, roleService, userRoleService, roleDescriptionService, teamUserService) {
         this.repo = repo;
         this.userService = userService;
         this.roleService = roleService;
         this.userRoleService = userRoleService;
         this.roleDescriptionService = roleDescriptionService;
+        this.teamUserService = teamUserService;
     }
     async getAll() {
         return await this.repo
@@ -54,8 +56,45 @@ let LeadsService = class LeadsService {
             .query(`SELECT * FROM public."getDeliveredLeadsFull" where assigned_user='${operatorID}'
 `);
     }
+    async getDeliveredLeadsByTeam(teamID) {
+        if (!teamID) {
+            return await this.repo
+                .query(`select leads.id as lead_id, leads.broker_id as lead_broker_id, leads.firstname as lead_firstname,
+leads.lastname as lead_lastname, leads.email as leads_email, b.name as broker_name, c.name as campaign_name
+from leads 
+INNER JOIN team_user t ON t.user_id = leads.assigned_user
+LEFT JOIN ad_campaigns c ON c.id = leads.source_id
+LEFT JOIN brokers b ON b.id = leads.broker_id
+
+ORDER BY leads.campaign_id DESC`);
+        }
+        return await this.repo
+            .query(`select leads.id as lead_id, leads.broker_id as lead_broker_id, leads.firstname as lead_firstname,
+leads.lastname as lead_lastname, leads.email as leads_email, b.name as broker_name, c.name as campaign_name
+from leads 
+INNER JOIN team_user t ON t.user_id = leads.assigned_user
+LEFT JOIN ad_campaigns c ON c.id = leads.source_id
+LEFT JOIN brokers b ON b.id = leads.broker_id
+Where t.team_id='${teamID}'::uuid
+ORDER BY leads.campaign_id DESC`);
+    }
+    async getDeliveredLeadsFullByLead(leadID) {
+        return await this.repo
+            .query(`SELECT * FROM public."getDeliveredLeadsFull" where lead_id='${leadID}'
+`);
+    }
     async getDeliveredLeads() {
         return await this.repo.query(`SELECT * FROM public."getDeliveredLeads"`);
+    }
+    async getMyLeadStats(operatorID) {
+        const transferedLead = await this.repo
+            .query(`select count(*) as transferedLead from public."user" where "isTrader"=true and "leadOperatorID"='${operatorID}'::uuid
+`);
+        const assignedLead = await this.repo
+            .query(`select count(*) as assignedLead from public."leads" where "assigned_user"='${operatorID}'::uuid
+
+`);
+        return [...transferedLead, ...assignedLead];
     }
     async getDeliveredLeadsByOperator(operatorID) {
         return await this.repo
@@ -188,7 +227,8 @@ LeadsService = __decorate([
         user_service_1.UsersService,
         roles_service_1.RolesService,
         role_user_service_1.RoleUserService,
-        roles_description_service_1.RolesDescriptionService])
+        roles_description_service_1.RolesDescriptionService,
+        team_user_service_1.TeamUserService])
 ], LeadsService);
 exports.LeadsService = LeadsService;
 //# sourceMappingURL=leads.service.js.map

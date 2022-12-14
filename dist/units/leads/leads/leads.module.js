@@ -13,6 +13,7 @@ const leads_entity_1 = require("../../../models/leads/leads.entity");
 const roles_description_module_1 = require("../../roles/roles-description/roles-description.module");
 const roles_module_1 = require("../../roles/roles/roles.module");
 const role_user_module_1 = require("../../user/role_user/role_user.module");
+const team_user_module_1 = require("../../user/team_user/team_user.module");
 const user_module_1 = require("../../user/user/user.module");
 const leads_controller_1 = require("./leads.controller");
 const leads_service_1 = require("./leads.service");
@@ -25,7 +26,8 @@ LeadsModule = __decorate([
             user_module_1.UserModule,
             roles_module_1.RolesModule,
             role_user_module_1.RoleUserModule,
-            roles_description_module_1.RolesDescriptionModule
+            roles_description_module_1.RolesDescriptionModule,
+            team_user_module_1.TeamUserModule,
         ],
         controllers: [leads_controller_1.LeadsController],
         providers: [leads_service_1.LeadsService],
